@@ -1,13 +1,10 @@
 import './App.css';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Proximamente el ecommerce de Etman
-        </p>
-      </header>
+      <Header/>
     </div>
   );
 }
