@@ -2,7 +2,7 @@ import NavBar from '../NavBar/NavBar';
 
 const Header = () => {
   return (
-    <NavBar/>
+    <NavBar test='probando' beta='beta'/>
   )
 }
 
