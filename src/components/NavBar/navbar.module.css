@@ -1,17 +1,36 @@
-  .navbar {
-    overflow: hidden;
-    background-color: #8F1838;
-  }
+.navbar {
+  width: 100%;
+  background-color: #f2f2f2;
+  overflow: auto;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .navbar div{
-    color: #f2f2f2
-  }
-  
-  .navbar li {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-  }
+/* Navbar links */
+.navbar a {
+  float: center;
+  text-align: center;
+  padding: 12px;
+  color: #8F1838;;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar img{
+  color: #f2f2f2;
+  width: 80px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+  background-color: #8F1838;
+  color: #f2f2f2
+}
+
+/* Current/active navbar link */
+/* .active {
+  background-color: #000;
+  color: #f2f2f2;
+} */
