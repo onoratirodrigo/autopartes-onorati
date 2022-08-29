@@ -28,5 +28,6 @@ export const products = [
         category: 'short',
         img: 'https://http2.mlstatic.com/D_NQ_NP_2X_845832-MLA45188375962_032021-F.webp'
         
-    }
+    },
+    
 ]

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {products} from '../../mock/products'
 import ItemList from '../ItemList/ItemList'
-
+import {Container, Col, Row} from 'react-bootstrap'
+ 
 const ItemListContainer = ({something}) => {
 
   const [items, setItems] = useState([])
@@ -10,7 +11,7 @@ const ItemListContainer = ({something}) => {
       const getProducts = new Promise((res, rej)=>{
         setTimeout(()=>{
           res(products)
-        }, 3000);
+        }, 2000);
       });
       getProducts
         .then((data)=>{
@@ -29,7 +30,9 @@ const ItemListContainer = ({something}) => {
   return (
     <div>
       <h2>{something}</h2>
-      <ItemList items={items} />
+      <Container>
+        <ItemList items={items} />
+      </Container>
       {/* {
         items.map(item=>{
           return (

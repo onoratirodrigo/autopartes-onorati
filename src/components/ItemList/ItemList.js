@@ -1,15 +1,18 @@
 import React from 'react'
 import Item from '../Item/Item'
+import {Row, Col } from 'react-bootstrap'
 
 const ItemList = ({items}) => {
   return (
-    <div>
+    <Row>
         {items.map((item)=>{
             return(
-                <Item item={item} key={item.id}/>
+                <Col lg={4} key={item.id}>
+                  <Item item={item}/>
+                </Col>
             )
         })}
-    </div>
+    </Row>
   )
 }
 
