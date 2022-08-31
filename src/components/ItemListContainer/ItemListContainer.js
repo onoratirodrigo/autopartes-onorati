@@ -2,19 +2,27 @@ import React, { useEffect, useState } from 'react'
 import {products} from '../../mock/products'
 import ItemList from '../ItemList/ItemList'
 import {Container, Col, Row} from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import MiSpinner from '../MiSpinner/MiSpinner'
  
 const ItemListContainer = ({something}) => {
 
   const [items, setItems] = useState([])
+  const [isLoading, setIsLoading ] = useState(true)
+  const {id} = useParams()
 
   useEffect(()=>{
+      setIsLoading(true)
+
       const getProducts = new Promise((res, rej)=>{
         setTimeout(()=>{
-          res(products)
+          const filterProducts = products.filter((prod)=> prod.category === id)
+          res(id ? filterProducts : products)
         }, 2000);
       });
       getProducts
         .then((data)=>{
+          setIsLoading(false)
           setItems(data);
         })
         .catch((error)=>{
@@ -25,24 +33,20 @@ const ItemListContainer = ({something}) => {
         })
 
 
-  },[])
+  },[id])
 
   return (
-    <div>
-      <h2>{something}</h2>
-      <Container>
-        <ItemList items={items} />
-      </Container>
-      {/* {
-        items.map(item=>{
-          return (
-            <div key={item.id}>
-              <p>{items.title}</p>
-              <p>${items.price}.</p>
-            </div>
-          )
-        })
-      } */}
+    <div className='d-flex justify-content-center my-3'>
+
+      {
+        isLoading ? <MiSpinner/> : (
+          <Container>
+            <h2 className='text-center'>{something}</h2>
+            <ItemList items={items} />
+          </Container>
+        )
+      }
+      
     </div>
   )
 }

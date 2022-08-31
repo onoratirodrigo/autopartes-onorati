@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { products } from '../../mock/products'
 import ItemDetail from '../ItemDetail/ItemDetail'
-// import Spinner from '../Spinner/Spinner'
+import MiSpinner from '../MiSpinner/MiSpinner'
 
 const ItemDetailContainer = () => {
 
     const [item, setItem] = useState({})
     const [isLoading, setIsLoading ] = useState(true)
+    const {id} = useParams()
 
     useEffect(()=>{
         const getProducts = new Promise((res, rej)=>{
             setTimeout(()=>{
-              res(products)
+              const numId = Number(id)
+              res(products.find((item)=>item.id === numId))
             }, 2000);
           });
           getProducts
             .then((data)=>{
               setIsLoading(false)
-              setItem(data.find((item)=>item.id === 3));
+              setItem(data)
             })
             .catch((error)=>{
               console.log(error);
@@ -27,11 +30,11 @@ const ItemDetailContainer = () => {
 
 
   return (
-    <>
+    <div className='d-flex justify-content-center my-3'>
         {
-            isLoading ? 'Cargando...' : <ItemDetail item={item}/>
+            isLoading ? <MiSpinner/> : <ItemDetail item={item}/>
         }
-    </>
+    </div>
   )
 }
 
