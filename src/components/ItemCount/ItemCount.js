@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import estilos from './itemCount.module.css'
 import { Alert } from 'react-bootstrap'
 
-const ItemCount = ({stock}) => {
+const ItemCount = ({stock, onAdd}) => {
 
-    const [add, onAdd] = useState(1)
+    const [cant, onCant] = useState(1)
     const [maxLimit, setMaxLimit] = useState(false)
     const initial = 1
     const danger = 'danger'
 
     const sumar = ()=>{
-        if(add < stock){
-            onAdd(add + 1)
+        if(cant < stock){
+            onCant(cant + 1)
         }else{
             console.log('no se puede mas que el stock')
             setMaxLimit(true)
@@ -20,24 +20,24 @@ const ItemCount = ({stock}) => {
 
     const restar =(e)=>{
         let btn = e.target
-        if(add > 0){
-            onAdd(add - 1)
+        if(cant > 1){
+            onCant(cant - 1)
             setMaxLimit(false)
         }
     }
 
-    const agregarAlCarrito = (add)=>{
-        let msj
-        (add === 1) ? msj = `Se agrego 1 producto al carrito` : msj = `Se agregaron ${add} productos al carrito`
-        alert(msj)
-    }
+    // const agregarAlCarrito = (cant)=>{
+    //     let msj
+    //     (cant === 1) ? msj = `Se agrego 1 producto al carrito` : msj = `Se agregaron ${cant} productos al carrito`
+    //     alert(msj)
+    // }
 
   return (
     <div className={estilos.card}>
         {/* <h1>Amortiguadores delanteros</h1> */}
         <div>
             <button onClick={restar}>-</button>
-            <span className={estilos.cant}>{add}</span>
+            <span className={estilos.cant}>{cant}</span>
             <button onClick={sumar}>+</button>
         </div>
         <p>Stock: {stock}</p>
@@ -50,7 +50,7 @@ const ItemCount = ({stock}) => {
         }
         <button 
             style={{width:'100%'}} 
-            onClick={()=>{agregarAlCarrito(add)}}>
+            onClick={ () => onAdd(cant)}>
             Agregar al carrito
         </button>
     </div>
