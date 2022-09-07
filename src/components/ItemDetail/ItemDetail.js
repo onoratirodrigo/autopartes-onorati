@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import ItemCount from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../context/CartContext'
 
 const ItemDetail = ({ item }) => {
 
   const [cant, setCant] = useState(0)
+  const {cart, addToCart} = useContext(CartContext)
 
   const onAdd = (cant) =>{
     setCant(cant)
+    addToCart(item, cant)
   }
+
+  console.log(cart)
     
   return (
     <div className='shadow d-flex'>

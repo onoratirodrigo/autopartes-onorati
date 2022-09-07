@@ -18,7 +18,7 @@ const ItemListContainer = ({something}) => {
         setTimeout(()=>{
           const filterProducts = products.filter((prod)=> prod.category === id)
           res(id ? filterProducts : products)
-        }, 2000);
+        }, 500);
       });
       getProducts
         .then((data)=>{
