@@ -15,7 +15,7 @@ const CartProvider = ({children})=>{
             cart.map((obj)=>{
 
                 if(obj.id === item.id){
-                    obj.cant += cant
+                    obj.cant = cant
                 }
 
             })
@@ -24,15 +24,19 @@ const CartProvider = ({children})=>{
     }
 
     const removeItem = (itemId)=>{
-        cart.map((i, index)=>{
+        const itemEliminado = cart.map((i, index)=>{
             if(i.id === itemId){
                 cart.splice(index, 1)
             }
         })
+        setCart(itemEliminado)
+        console.log(cart)
+        //lo puedo hacer con fiulter tambien usando el !== con el id que deseo borrar
     }
 
-    const clear = ()=>{
+    const clearCart = ()=>{
         setCart([])
+        console.log(cart)
     }
 
     const isInCart = (id)=>{
@@ -43,7 +47,7 @@ const CartProvider = ({children})=>{
     //estados
     //funciones 
     return(
-        <CartContext.Provider value={{cart, addToCart, removeItem}}>
+        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )

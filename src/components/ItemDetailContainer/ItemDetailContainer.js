@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { products } from '../../mock/products'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import MiSpinner from '../MiSpinner/MiSpinner'
+import {db} from '../../Firebase/firebaseConfig'
+import {getDoc, doc, collection} from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
 
@@ -11,20 +13,34 @@ const ItemDetailContainer = () => {
     const {id} = useParams()
 
     useEffect(()=>{
-        const getProducts = new Promise((res, rej)=>{
-            setTimeout(()=>{
-              const numId = Number(id)
-              res(products.find((item)=>item.id === numId))
-            }, 500);
-          });
-          getProducts
-            .then((data)=>{
-              setIsLoading(false)
-              setItem(data)
-            })
-            .catch((error)=>{
-              console.log(error);
-            })
+
+      const itemCollection = collection(db, 'productos')
+      const ref = doc(itemCollection, id)
+      getDoc(ref)
+      .then((res)=>{
+        console.log(res)
+        setItem({
+          id: res.id,
+          ...res.data()
+        })
+      }).finally(()=>{
+        setIsLoading(false)
+      })
+
+        // const getProducts = new Promise((res, rej)=>{
+        //     setTimeout(()=>{
+        //       const numId = (id)
+        //       res(products.find((item)=>item.id === numId))
+        //     }, 500);
+        //   });
+        //   getProducts
+        //     .then((data)=>{
+        //       setIsLoading(false)
+        //       setItem(data)
+        //     })
+        //     .catch((error)=>{
+        //       console.log(error);
+        //     })
     },[])
 
 
