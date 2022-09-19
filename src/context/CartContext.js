@@ -19,24 +19,22 @@ const CartProvider = ({children})=>{
                 }
 
             })
-            console.log(cart);
         }
     }
 
     const removeItem = (itemId)=>{
-        const itemEliminado = cart.map((i, index)=>{
-            if(i.id === itemId){
-                cart.splice(index, 1)
-            }
-        })
+        // const itemEliminado = cart.map((i, index)=>{
+        //     if(i.id === itemId){
+        //         cart.splice(index, 1)
+        //     }
+        // })
+        const itemEliminado = cart.filter((item)=> item.id !== itemId )
         setCart(itemEliminado)
-        console.log(cart)
         //lo puedo hacer con fiulter tambien usando el !== con el id que deseo borrar
     }
 
     const clearCart = ()=>{
         setCart([])
-        console.log(cart)
     }
 
     const isInCart = (id)=>{
