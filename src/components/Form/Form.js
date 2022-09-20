@@ -1,7 +1,9 @@
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import React from 'react'
+import {db} from '../../Firebase/firebaseConfig'
 import { useState } from 'react'
 
-const Form = () => {
+const Form = ({cart, total, clearCart, handleId}) => {
 
     // 1
     // por cada input un estado
@@ -12,14 +14,19 @@ const Form = () => {
 
 
     const [nombre, setNombre] = useState('')
-    const [apellido, setApellido] = useState('')
+    const [telefono, setTelefono] = useState('')
+    const [mail, setMail] = useState('')
     
     const handleChangeName = (event)=>{
         setNombre(event.target.value)
     }
 
-    const handleChangeLastName = (event)=>{
-        setApellido(event.target.value)
+    const handleChangeTelNumber = (event)=>{
+        setTelefono(event.target.value)
+    }
+
+    const handleChangeMail = (event)=>{
+        setMail(event.target.value)
     }
 
     const handleSubmit = (event) =>{
@@ -27,15 +34,52 @@ const Form = () => {
         console.log(event.target.elements.nombre.value)
         // el .dir me da el detalle de todo lo que compone al target
         console.dir(event.target)
+
+        const order ={
+            buyer: {
+                nombre, telefono, mail
+            },
+            items: cart,
+            tota: total,
+            date: serverTimestamp()
+        }
+
+        const ordersCollection = collection(db, 'orders')
+
+        addDoc(ordersCollection, order)
+        .then((res)=>{
+            console.log(res)
+            handleId(res.id)
+            clearCart()
+            updateprod()
+        })
+
+        const updateprod = () =>{
+            const orderDoc = doc(db, 'orders', 'Cq1EOV6R6UE7Lz9C9uZT' );
+            updateDoc(orderDoc, {total: 50})
+        }
     }
 
 
   return (
-    <div>
-        <form action="" onSubmit={handleSubmit}>
-            <input type="text" placeholder='nombre' name='nombre' value={nombre} onChange={handleChangeName}/>
-            <input type="text" placeholder='apellido' name='apellido' value={apellido} onChange={handleChangeLastName}/>
-            <button>Enviar</button>
+    <div class='d-flex justify-content-center'>
+        <form action="" onSubmit={handleSubmit} className='row row-cols-lg-auto g-3 align-items-end'>
+            <div className="col-12">
+
+                <label className='form-label'>Nombre</label>
+                <input type="text" className='form-control' placeholder='Rodrigo' name='nombre' value={nombre} onChange={handleChangeName}/>
+            </div>
+            <div className="col-12">
+                <label className='form-label'>Telefono</label>
+                <input type="text" className='form-control' placeholder='2914585585' name='telefono' value={telefono} onChange={handleChangeTelNumber}/>
+            </div>
+            <div className="col-12">
+                <label className='form-label'>Mail</label>
+                <input type="text" className='form-control' placeholder='mailderodrigo@mimail.com' name='mail' value={mail} onChange={handleChangeMail}/>
+            </div>
+            <div className="col-12">
+                <button className='btn btn-primary'>Terminar compra</button>
+            </div>
         </form>
     </div>
   )

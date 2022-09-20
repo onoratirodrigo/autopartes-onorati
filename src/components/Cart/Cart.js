@@ -2,13 +2,31 @@ import React, { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import Form from '../Form/Form'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 const Cart = () => {
 
-  const {cart, clearCart, removeItem} = (useContext(CartContext))
+  const [idCompra, setIdCompra] = useState('')
+  const {cart, clearCart, removeItem, getTotalPrice, getTotalCantidades} = (useContext(CartContext))
+  const totalPrice = getTotalPrice()
+  const totalCantidades = getTotalCantidades()
 
-  console.log(cart.length)
+  console.log(totalPrice)
+
+  const handleId = (id)=>{
+    setIdCompra(id)
+  }
+
+  if(idCompra){
+    return <h1 className = 'mt-3 text-center'>Gracias por su compra ! su numero de recibo es el: {idCompra}</h1>
+  }
+
+  if(cart.length === 0 ){
+    return <h1 className = 'mt-3 text-center'>Aun no compraste nada, volve al <Link to='/'>home</Link> y agrega algo al carrito</h1>
+  }
 
   return (
     <div>
@@ -39,7 +57,11 @@ const Cart = () => {
           
         ))
       }
+      <div className="d-flex justify-content-end">
+        <span className='me-3'>Total: ${totalPrice}.-</span>
+      </div>
       <div className="btn btn-danger d-block m-3" onClick={clearCart}>Eliminar todos</div>
+      <Form cart={cart} total={totalPrice} clearCart={clearCart} handleId={handleId}/>
     </div>
   )
 }

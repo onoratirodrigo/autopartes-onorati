@@ -37,26 +37,7 @@ const ItemListContainer = ({something}) => {
         setIsLoading(false)
       })
 
-      // const getProducts = new Promise((res, rej)=>{
-      //   setTimeout(()=>{
-      //     const filterProducts = products.filter((prod)=> prod.category === id)
-      //     res(id ? filterProducts : products)
-      //   }, 500);
-      // });
-      // getProducts
-      //   .then((data)=>{
-      //     setIsLoading(false)
-      //     setItems(data);
-      //   })
-      //   .catch((error)=>{
-      //     console.log(error);
-      //   })
-      //   .finally(()=>{
-      //     console.log('Finally')
-      //   })
-
-
-  },[id])//id
+  },[id])
 
   return (
     <div className='d-flex justify-content-center my-3'>

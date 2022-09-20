@@ -37,6 +37,24 @@ const CartProvider = ({children})=>{
         setCart([])
     }
 
+    const getTotalPrice = ()=>{
+
+        var totalPrice = 0
+        cart.map((item)=> totalPrice += item.price * item.cant)
+
+        return totalPrice
+
+    }
+
+    const getTotalCantidades = ()=>{
+
+        var totalCantidades = 0
+        cart.map((item) => totalCantidades += item.cant)
+
+        return totalCantidades
+
+    }
+
     const isInCart = (id)=>{
         const existe = cart.some(item => item.id === id)
         return existe
@@ -45,7 +63,7 @@ const CartProvider = ({children})=>{
     //estados
     //funciones 
     return(
-        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart}}>
+        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, getTotalPrice, getTotalCantidades}}>
             {children}
         </CartContext.Provider>
     )

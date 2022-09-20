@@ -26,21 +26,6 @@ const ItemDetailContainer = () => {
       }).finally(()=>{
         setIsLoading(false)
       })
-
-        // const getProducts = new Promise((res, rej)=>{
-        //     setTimeout(()=>{
-        //       const numId = (id)
-        //       res(products.find((item)=>item.id === numId))
-        //     }, 500);
-        //   });
-        //   getProducts
-        //     .then((data)=>{
-        //       setIsLoading(false)
-        //       setItem(data)
-        //     })
-        //     .catch((error)=>{
-        //       console.log(error);
-        //     })
     },[])
 
 

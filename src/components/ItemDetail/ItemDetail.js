@@ -19,7 +19,7 @@ const ItemDetail = ({ item }) => {
   return (
     <div className='shadow d-flex'>
         <img src={item.img} alt="img" className='w-50' />
-        <div>
+        <div className='ms-3'>
             <h1>{item.title}</h1>
             <p>Descripcion: {item.description}</p>
             <p>Precio: ${item.price}</p>
