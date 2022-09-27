@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import {getFirestore} from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCLyGlENVdRpQzPwr_HRoJp4xbNGVR7wIA",
-  authDomain: "autopartes-onorati.firebaseapp.com",
-  projectId: "autopartes-onorati",
-  storageBucket: "autopartes-onorati.appspot.com",
-  messagingSenderId: "15015327414",
-  appId: "1:15015327414:web:31ccd501cc6d21a7485817"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId:process.env.REACT_APP_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);

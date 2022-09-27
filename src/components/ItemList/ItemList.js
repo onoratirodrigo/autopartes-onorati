@@ -3,7 +3,6 @@ import Item from '../Item/Item'
 import {Row, Col } from 'react-bootstrap'
 
 const ItemList = ({items}) => {
-  console.log(items)
   return (
     <Row>
         {items.map((item)=>{

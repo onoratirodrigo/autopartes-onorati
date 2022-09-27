@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-// import {products} from '../../mock/products'
 import ItemList from '../ItemList/ItemList'
-import {Container, Col, Row} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import MiSpinner from '../MiSpinner/MiSpinner'
 import {collection, getDocs, query, where} from 'firebase/firestore'

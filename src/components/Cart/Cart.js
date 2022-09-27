@@ -14,8 +14,6 @@ const Cart = () => {
   const totalPrice = getTotalPrice()
   const totalCantidades = getTotalCantidades()
 
-  console.log(totalPrice)
-
   const handleId = (id)=>{
     setIdCompra(id)
   }

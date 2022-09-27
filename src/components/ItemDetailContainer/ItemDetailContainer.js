@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { products } from '../../mock/products'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import MiSpinner from '../MiSpinner/MiSpinner'
 import {db} from '../../Firebase/firebaseConfig'
@@ -18,7 +17,6 @@ const ItemDetailContainer = () => {
       const ref = doc(itemCollection, id)
       getDoc(ref)
       .then((res)=>{
-        console.log(res)
         setItem({
           id: res.id,
           ...res.data()

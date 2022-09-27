@@ -26,15 +26,8 @@ const ItemCount = ({stock, onAdd}) => {
         }
     }
 
-    // const agregarAlCarrito = (cant)=>{
-    //     let msj
-    //     (cant === 1) ? msj = `Se agrego 1 producto al carrito` : msj = `Se agregaron ${cant} productos al carrito`
-    //     alert(msj)
-    // }
-
   return (
     <div className={estilos.card}>
-        {/* <h1>Amortiguadores delanteros</h1> */}
         <div>
             <button onClick={restar}>-</button>
             <span className={estilos.cant}>{cant}</span>

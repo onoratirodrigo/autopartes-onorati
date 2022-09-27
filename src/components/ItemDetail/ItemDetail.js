@@ -13,8 +13,6 @@ const ItemDetail = ({ item }) => {
     setCant(cant)
     addToCart(item, cant)
   }
-
-  console.log(cart)
     
   return (
     <div className='shadow d-flex'>

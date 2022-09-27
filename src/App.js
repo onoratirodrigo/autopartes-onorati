@@ -1,8 +1,6 @@
-import './App.css';
 import Header from './components/Header/Header';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import Form from './components/Form/Form';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import CartProvider from './context/CartContext';
@@ -13,10 +11,9 @@ function App() {
     <CartProvider>
       <BrowserRouter className="App">
         <Header/>
-        {/* <Form/> */}
         <Routes>
           
-          <Route path='/' element={<ItemListContainer something='Mi E-Commerce'/>}/>
+          <Route path='/' element={<ItemListContainer something='ETMAN'/>}/>
 
           <Route path='/category/:id' element={<ItemListContainer/>}/>
 
@@ -25,9 +22,6 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
 
         </Routes>
-        {/* imagen desde public  se pone la ruta como si ya estuviera parado en public*/}
-        {/* imagen desde src importar la imagen 'import logo from 'link_carpeta'*/}
-        {/* imagen desde link */}
 
 
       </BrowserRouter>

@@ -5,14 +5,6 @@ import { useState } from 'react'
 
 const Form = ({cart, total, clearCart, handleId}) => {
 
-    // 1
-    // por cada input un estado
-    // 2
-    // por cada inmput el value 
-    // 3- 
-    // por cada input el evento onChange
-
-
     const [nombre, setNombre] = useState('')
     const [telefono, setTelefono] = useState('')
     const [mail, setMail] = useState('')
@@ -31,10 +23,7 @@ const Form = ({cart, total, clearCart, handleId}) => {
 
     const handleSubmit = (event) =>{
         event.preventDefault()
-        console.log(event.target.elements.nombre.value)
-        // el .dir me da el detalle de todo lo que compone al target
-        console.dir(event.target)
-
+        
         const order ={
             buyer: {
                 nombre, telefono, mail
@@ -48,7 +37,6 @@ const Form = ({cart, total, clearCart, handleId}) => {
 
         addDoc(ordersCollection, order)
         .then((res)=>{
-            console.log(res)
             handleId(res.id)
             clearCart()
             updateprod()
